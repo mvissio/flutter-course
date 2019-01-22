@@ -4,7 +4,19 @@ main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  List<String> _products = [];
+  int num = 0;
+
+  @override
   build(context) {
     return MaterialApp(
       home: Scaffold(
@@ -13,14 +25,18 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Card(
-              child: Column(
-                children: <Widget>[
-                  Image.asset('assets/food.jpg'),
-                  Text('Food Paradice')
-                ],
-              ),
-            )
+            Container(
+                margin: EdgeInsets.all(10.0),
+                child: RaisedButton(
+                    onPressed: () {
+                      setState(() {
+                       _products.add('number ${num}');
+                       print(num);
+                       num++;
+                      });
+                    },
+                    child: Text('Add Product'))),
+
           ],
         ),
       ),
